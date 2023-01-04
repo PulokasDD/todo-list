@@ -1,0 +1,29 @@
+<ng-container *ngIf="data.action === 'remove'; else edit">
+    <section class="container">
+        <div>
+            <h2>Remove Task {{ data.name }}?</h2>
+            <div class="btn-section">
+                <button mat-stroked-button color="warn" (click)="handler('yes')">Yes</button>
+                <button mat-stroked-button color="primary" (click)="handler('no')">No</button>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<ng-template #edit>
+    <h2>Enter a new task name</h2>
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline" class="form-field" >
+            <mat-label>new task name</mat-label>
+            <input matInput name="newTaskName" formControlName="newTaskName">
+        </mat-form-field>
+        <div class="btn-section">
+            <button mat-stroked-button 
+                    color="primary" 
+                    [disabled]="form.value.newTaskName === ''" 
+                    (click)="submit()"
+                    >Submit</button>
+            <button mat-stroked-button (click)="dialogRef.close()">Cancel</button>
+        </div>
+    </form>
+</ng-template>

@@ -24,4 +24,10 @@ export class TaskService {
     this._state = this._state.filter(task => task.name !== name)
     this._tasks$.next(this._state)
   }
+
+  public editTask(oldName: string, newName: string) {
+    if(oldName === newName) return 
+    this._state = this._state.filter(task => task.name === oldName ? task.name = newName : task)
+    this._tasks$.next(this._state)
+  }
 }

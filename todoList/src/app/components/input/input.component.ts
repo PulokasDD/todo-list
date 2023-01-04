@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TaskService } from '../../task.service';
 
@@ -8,7 +8,7 @@ import { TaskService } from '../../task.service';
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
 
   form: FormGroup = new FormGroup({
     taskName: new FormControl('')
@@ -16,12 +16,8 @@ export class InputComponent implements OnInit {
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
-  }
-
   public addTask() {
     this.taskService.addTask(this.form.value.taskName)
     this.form.reset()
   }
-
 }

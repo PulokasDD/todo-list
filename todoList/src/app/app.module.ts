@@ -10,19 +10,22 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // components 
 import { AppComponent } from './app.component';
 import { InputComponent } from './components/input/input.component';
 import { ListComponent } from './components/list/list.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
-const MATERIAL = [ MatFormFieldModule, MatButtonModule, MatInputModule, MatCardModule ]
+const MATERIAL = [ MatFormFieldModule, MatButtonModule, MatInputModule, MatCardModule, MatDialogModule ]
 
 @NgModule({
   declarations: [
     AppComponent,
     InputComponent,
-    ListComponent
+    ListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

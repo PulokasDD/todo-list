@@ -4,7 +4,7 @@
             <span class="card-content__order">{{ i + 1 }}.</span> 
             <span class="card-content__name-task">{{ task.name }}</span> 
             <span class="card-content__btn-section">
-                <button mat-stroked-button>Edit</button>
+                <button mat-stroked-button (click)="editTask(task.name)">Edit</button>
                 <button mat-stroked-button color="warn" (click)="removeTask(task.name)">Remove</button>
             </span> 
         </div>
