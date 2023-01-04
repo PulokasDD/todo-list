@@ -1,0 +1,16 @@
+:host {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-field {
+        width: 500px;
+    }
+
+    .submit-btn {
+        position: relative;
+        bottom: 10px;
+    }
+}

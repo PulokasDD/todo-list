@@ -1,0 +1,19 @@
+:host {
+    .card {
+        width: 600px;
+    }
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__order {
+            font-weight: bold;
+        }
+        &__btn-section {
+            button {
+                display: inline-block;
+                margin: 0 3px;
+            }
+        }
+    }
+}

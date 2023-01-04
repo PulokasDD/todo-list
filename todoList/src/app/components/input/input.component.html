@@ -1,0 +1,14 @@
+<section class="main-container">
+    <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="form-field" >
+        <mat-label>task name</mat-label>
+        <input matInput name="taskName" formControlName="taskName">
+    </mat-form-field>
+    </form>
+    <button mat-raised-button 
+            color="primary"
+            class="submit-btn" 
+            [disabled]="form.value.taskName === ''"
+            (click)="addTask()"
+            >add task</button>  
+</section>
