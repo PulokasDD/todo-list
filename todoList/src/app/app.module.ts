@@ -17,6 +17,8 @@ import { AppComponent } from './app.component';
 import { InputComponent } from './components/input/input.component';
 import { ListComponent } from './components/list/list.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 const MATERIAL = [ MatFormFieldModule, MatButtonModule, MatInputModule, MatCardModule, MatDialogModule ]
 
@@ -33,7 +35,10 @@ const MATERIAL = [ MatFormFieldModule, MatButtonModule, MatInputModule, MatCardM
     NoopAnimationsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ...MATERIAL
+    ...MATERIAL,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
