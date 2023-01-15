@@ -1,19 +1,9 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
-} from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { tasksReducer } from './todoList/todoList.reducer';
 
-export interface State {
-
-}
-
-export const reducers: ActionReducerMap<State> = {
-
+export const reducers: ActionReducerMap<any> = {
+  'task': tasksReducer,
 };
 
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [];

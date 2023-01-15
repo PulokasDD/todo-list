@@ -2,8 +2,12 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, take } from 'rxjs';
 import { TaskService } from '../../task.service';
-import { Task, Action } from '../../types';
+import { Task, Action, TaskState } from '../../types';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { selectTasks } from 'src/app/reducers/todoList/todoList.selectors';
+import { editTask, removeTask } from 'src/app/reducers/todoList/todoList.actions';
 
 @Component({
   selector: 'app-list',
@@ -12,11 +16,9 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class ListComponent {
 
-  tasks$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([])
+  public tasks$: Observable<Task[]> = this.store$.pipe(select(selectTasks))
 
-  constructor(private taskService: TaskService, private dialog: MatDialog) {
-    this.tasks$ = this.taskService.tasks$
-  }
+  constructor(private dialog: MatDialog, private store$: Store<TaskState>) {}
 
   private openDialog(name: string, action: Action) {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -28,7 +30,8 @@ export class ListComponent {
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
       if (result) {
-        result === 'yes' ? this.taskService.removeTask(name) : this.taskService.editTask(name, result)
+        result === 'yes' ? this.store$.dispatch(removeTask({ name })) :
+                           this.store$.dispatch(editTask({ oldName: name, newName: result })) 
       }
     });
   }
@@ -40,5 +43,4 @@ export class ListComponent {
   public removeTask(name: string) {
     this.openDialog(name, 'remove')
   }
-
 }

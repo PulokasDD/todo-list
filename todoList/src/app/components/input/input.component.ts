@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TaskService } from '../../task.service';
+import { Store } from '@ngrx/store';
+import { addTask } from 'src/app/reducers/todoList/todoList.actions';
 
 @Component({
   selector: 'app-input',
@@ -14,10 +15,10 @@ export class InputComponent {
     taskName: new FormControl('')
   })
 
-  constructor(private taskService: TaskService) {}
+  constructor(private store$: Store<TaskState>) {}
 
   public addTask() {
-    this.taskService.addTask(this.form.value.taskName)
+    this.store$.dispatch(addTask({ name: this.form.value.taskName}))
     this.form.reset()
   }
 }
